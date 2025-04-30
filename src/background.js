@@ -1,4 +1,4 @@
-const BAXUS_API_URL = 'https://api.baxus.com/v1/listings'; // Replace with actual BAXUS API endpoint
+const BAXUS_API_URL = 'https://services.baxus.co/api/search/listings?from=0&size=20&listed=true'; // Replace with actual BAXUS API endpoint
 
 chrome.runtime.onInstalled.addListener(() => {
     console.log('Whisky/Wine Price Checker extension installed.');

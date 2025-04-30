@@ -6,14 +6,31 @@ document.addEventListener('DOMContentLoaded', function() {
         resultsContainer.innerHTML = 'Fetching data...';
         
         // Send a message to the content script to scrape bottle information
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { action: 'scrape' }, function(response) {
-                if (response && response.bottles) {
-                    comparePrices(response.bottles);
-                } else {
-                    resultsContainer.innerHTML = 'No bottles found.';
-                }
-            });
+        // chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        //     chrome.tabs.sendMessage(tabs[0].id, { action: 'scrape' }, function(response) {
+        //         if (response && response.bottles) {
+        //             comparePrices(response.bottles);
+        //         } else {
+        //             resultsContainer.innerHTML = 'No bottles found.';
+        //         }
+        //     });
+        // });
+
+        chrome.tabs.sendMessage(tabs[0].id, { action: 'scrape' }, function(response) {
+            if (chrome.runtime.lastError) {
+                resultsContainer.innerHTML = 'Error: Unable to communicate with the content script.';
+                console.error(chrome.runtime.lastError.message);
+                return;
+            }
+
+            console.log(response);
+            console.log(response.bottles);
+        
+            if (response && response.bottles) {
+                comparePrices(response.bottles);
+            } else {
+                resultsContainer.innerHTML = 'No bottles found or content script did not respond.';
+            }
         });
     });
 

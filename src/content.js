@@ -20,5 +20,23 @@ function scrapeBottleInfo() {
     chrome.runtime.sendMessage({ type: 'SCRAPED_BOTTLE_INFO', data: bottleInfo });
 }
 
+// filepath: /Users/admin/dapps/Extension/whisky-wine-price-checker/src/content.js
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === 'scrape') {
+        const bottles = scrapeBottleInfo(); // Your scraping logic
+        sendResponse({ bottles });
+    }
+});
+
+function scrapeBottleInfo() {
+    const bottles = [];
+    document.querySelectorAll('.product-item').forEach((item) => {
+        const name = item.querySelector('.product-title')?.innerText || 'Unknown';
+        const price = item.querySelector('.product-price')?.innerText || 'Unknown';
+        bottles.push({ name, price });
+    });
+    return bottles;
+}
+
 // Run the scraping function when the content script is loaded
 scrapeBottleInfo();
