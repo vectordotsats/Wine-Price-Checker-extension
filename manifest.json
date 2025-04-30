@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Whisky & Wine Price Checker",
+  "version": "1.0",
+  "description": "Scrapes whisky and wine bottle information from e-commerce and retail websites and compares prices with the BAXUS marketplace.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/popup/popup.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
