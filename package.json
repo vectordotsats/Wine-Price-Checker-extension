@@ -1,24 +1,28 @@
 {
-  "name": "whisky-wine-price-checker",
-  "version": "1.0.0",
-  "description": "A Chrome extension that scrapes whisky and wine bottle information from e-commerce and retail websites, comparing prices with the BAXUS marketplace.",
-  "main": "src/background.js",
-  "scripts": {
-    "build": "echo 'Build script not defined'",
-    "test": "echo 'Test script not defined'"
+  "manifest_version": 3,
+  "name": "The Honey Barrel",
+  "version": "1.0",
+  "description": "Automated price comparison for premium spirits",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["*://*/*", "https://services.baxus.co/*"],
+  "background": {
+    "service_worker": "background.js"
   },
-  "keywords": [
-    "chrome",
-    "extension",
-    "whisky",
-    "wine",
-    "scraper",
-    "price-checker"
-  ],
-  "author": "Your Name",
-  "license": "MIT",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "cheerio": "^1.0.0-rc.10"
+
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content-script.js"],
+    "run_at": "document_idle"
+  }],
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "icons/barrel-128.png"
+  },
+  
+  "icons": {
+    "16": "icons/barrel-16.png",
+    "48": "icons/barrel-48.png",
+    "128": "icons/barrel-128.png"
   }
 }
