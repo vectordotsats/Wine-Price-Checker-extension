@@ -19,10 +19,15 @@
     "default_popup": "popup/popup.html",
     "default_icon": "icons/barrel-128.png"
   },
-  
+
   "icons": {
     "16": "icons/barrel-16.png",
     "48": "icons/barrel-48.png",
     "128": "icons/barrel-128.png"
+  },
+
+  "content_security_policy": {
+  "extension_pages": "script-src 'self'; object-src 'self'"
   }
+
 }

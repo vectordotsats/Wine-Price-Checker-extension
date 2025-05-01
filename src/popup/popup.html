@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <h1 class="header">Whisky/Wine Price Checker</h1>
         <div id="results">
             <p>Enter the bottle information to check prices:</p>
@@ -15,7 +15,28 @@
             <button id="checkPriceBtn">Check Prices</button>
             <div id="priceComparison"></div>
         </div>
+    </div> -->
+
+    <div class="comparison-results">
+        <div class="header">
+          <h2>BAXUS Price Comparison</h2>
+          <p class="current-price">Current Price: <span id="currentPrice"></span></p>
+        </div>
+        <div id="resultsContainer" class="results-container"></div>
     </div>
+
     <script src="popup.js"></script>
 </body>
 </html>
+
+<!-- popup.html -->
+<div class="comparison-results">
+    <div class="header">
+      <h2>BAXUS Price Comparison</h2>
+      <p class="current-price">Current Price: <span id="currentPrice"></span></p>
+    </div>
+    <div id="resultsContainer" class="results-container"></div>
+  </div>
+  
+  <script src="popup.js"></script>
+  
